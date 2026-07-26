@@ -1,0 +1,51 @@
+:root {
+    --primary-color: #c95117;
+    --bg-color: #f3f4f6;
+    --border-color: #e5e7eb;
+}
+body { font-family: 'Inter', sans-serif; margin: 0; background-color: var(--bg-color); height: 100vh; overflow: hidden; }
+
+/* Quản lý 2 màn hình */
+.screen-active { display: block; height: 100%; }
+.screen-hidden { display: none; }
+
+/* -- MÀN HÌNH SẢNH -- */
+.header { background: white; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; }
+.header h2 { margin: 0; color: var(--primary-color); font-size: 20px; }
+.search-box input { padding: 10px 15px; width: 300px; border: 1px solid var(--border-color); border-radius: 8px; }
+.grid-container { padding: 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; overflow-y: auto; height: calc(100vh - 80px); }
+.form-card { background: white; padding: 20px; border-radius: 8px; cursor: pointer; border: 1px solid var(--border-color); transition: 0.2s; }
+.form-card:hover { border-color: var(--primary-color); box-shadow: 0 4px 6px rgba(0,0,0,0.05); transform: translateY(-2px); }
+.form-card .badge { display: inline-block; padding: 4px 8px; background: #fff0eb; color: var(--primary-color); border-radius: 4px; font-size: 12px; margin-bottom: 10px; font-weight: bold;}
+
+/* -- MÀN HÌNH FOCUS MODE -- */
+.workspace-header { background: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); height: 60px; box-sizing: border-box;}
+.btn-back, .btn-print { padding: 8px 15px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; }
+.btn-back { background: #f3f4f6; color: #374151; }
+.btn-print { background: var(--primary-color); color: white; }
+
+.workspace-layout { display: flex; height: calc(100vh - 60px); }
+.input-panel { width: 40%; background: white; padding: 20px; overflow-y: auto; border-right: 1px solid var(--border-color); }
+.a4-panel { width: 60%; background: #525659; padding: 20px; overflow-y: auto; display: flex; justify-content: center; }
+
+/* Khung giấy A4 */
+.a4-paper { background: white; width: 210mm; min-height: 297mm; padding: 20mm; box-shadow: 0 0 10px rgba(0,0,0,0.5); box-sizing: border-box; font-size: 14pt; line-height: 1.5; }
+
+/* CSS sinh form tự động */
+.cccd-scanner-box { background: #f8fafc; padding: 15px; border: 2px dashed #cbd5e1; border-radius: 8px; margin-bottom: 20px; }
+.cccd-scanner-box input { width: 100%; padding: 10px; margin-top: 10px; border: 1px solid #94a3b8; border-radius: 4px; box-sizing: border-box;}
+.dynamic-input-group { margin-bottom: 15px; }
+.dynamic-input-group label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 14px; color: #334155; }
+.dynamic-input-group input { width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; box-sizing: border-box; }
+
+/* Các thẻ span điền dữ liệu trên giấy */
+.ef-data { color: blue; border-bottom: 1px dotted blue; min-width: 50px; display: inline-block; }
+
+/* ĐIỀU CHỈNH CHẾ ĐỘ MÁY IN */
+@media print {
+    body * { visibility: hidden; }
+    #a4-template-container, #a4-template-container * { visibility: visible; }
+    #a4-template-container { position: absolute; left: 0; top: 0; margin: 0; padding: 0; box-shadow: none; width: 100%; }
+    /* Đổi màu chữ xanh thành đen khi in */
+    .ef-data { color: black !important; border-bottom: none !important; }
+}
