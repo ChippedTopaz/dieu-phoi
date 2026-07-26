@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống E-Form Siêu tốc</title>
+    <!-- Kế thừa font và icon từ trang chủ -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/eform.css">
+</head>
+<body>
+    <!-- MÀN HÌNH 1: SẢNH CHỌN BIỂU MẪU -->
+    <div id="landing-screen" class="screen-active">
+        <div class="header">
+            <h2><i class="fa-solid fa-file-signature"></i> KHO BIỂU MẪU ĐIỆN TỬ (E-FORM)</h2>
+            <div class="search-box">
+                <input type="text" id="search-eform" placeholder="Tìm nhanh biểu mẫu..." oninput="EformEngine.filterForms(this.value)">
+            </div>
+        </div>
+        <div class="grid-container" id="eform-grid">
+            <!-- JavaScript sẽ đổ danh sách form từ Google Sheets vào đây -->
+            <div style="text-align: center; padding: 50px; width: 100%;">Đang tải cấu hình biểu mẫu...</div>
+        </div>
+    </div>
+
+    <!-- MÀN HÌNH 2: FOCUS MODE (KHÔNG GIAN LÀM VIỆC) -->
+    <div id="workspace-screen" class="screen-hidden">
+        <div class="workspace-header">
+            <button class="btn-back" onclick="EformEngine.backToLanding()"><i class="fa-solid fa-chevron-left"></i> Quay lại Kho</button>
+            <h3 id="current-form-title">Tên biểu mẫu...</h3>
+            <div class="action-buttons">
+                <button class="btn-print" onclick="window.print()"><i class="fa-solid fa-print"></i> In trực tiếp</button>
+            </div>
+        </div>
+
+        <div class="workspace-layout">
+            <!-- Cột trái: Form nhập liệu tự động sinh -->
+            <div class="input-panel">
+                <div class="cccd-scanner-box">
+                    <label><i class="fa-solid fa-qrcode"></i> Quét CCCD để tự động điền:</label>
+                    <input type="text" id="cccd-input" placeholder="Click vào đây và bấm súng quét..." autocomplete="off">
+                </div>
+                <div id="dynamic-inputs" class="dynamic-inputs-container">
+                    <!-- Các ô nhập liệu sẽ tự động mọc ra ở đây -->
+                </div>
+            </div>
+
+            <!-- Cột phải: Khung giấy A4 hiển thị template HTML -->
+            <div class="a4-panel">
+                <div class="a4-paper" id="a4-template-container">
+                    <!-- Nội dung tờ A4 sẽ được nhúng vào đây -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/eform-engine.js"></script>
+</body>
+</html>
